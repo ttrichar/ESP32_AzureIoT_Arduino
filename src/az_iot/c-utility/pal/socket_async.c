@@ -125,31 +125,31 @@ SOCKET_ASYNC_HANDLE socket_async_create(uint32_t serverIPv4, uint16_t port,
                 sock_addr.sin_port = htons(port);
 
                 connect_ret = connect(sock, (const struct sockaddr*)&sock_addr, sizeof(sock_addr));
-                if (connect_ret == -1)
-                {
-                    int sockErr = get_socket_errno(sock);
-                    if (sockErr != EINPROGRESS)
-                    {
+                //if (connect_ret == -1)
+                //{
+                    //int sockErr = get_socket_errno(sock);
+                    //if (sockErr != EINPROGRESS)
+                    //{
                         /* Codes_SRS_SOCKET_ASYNC_30_022: [ If socket connection fails, socket_async_create shall log an error and return SOCKET_ASYNC_INVALID_SOCKET. ]*/
-                        LogError("Socket connect failed, not EINPROGRESS: %d", sockErr);
-                        result = SOCKET_ASYNC_INVALID_SOCKET;
-                    }
-                    else
-                    {
+                        //LogError("Socket connect failed, not EINPROGRESS: %d", sockErr);
+                        //result = SOCKET_ASYNC_INVALID_SOCKET;
+                    //}
+                    //else
+                    //{
                         // This is the normally expected code path for our non-blocking socket
                         /* Codes_SRS_SOCKET_ASYNC_30_018: [ On success, socket_async_create shall return the created and configured SOCKET_ASYNC_HANDLE. ]*/
-                        result = sock;
-                    }
-                }
-                else
-                {
+                        //result = sock;
+                    //}
+                //}
+                //else
+                //{
                     /* Codes_SRS_SOCKET_ASYNC_30_018: [ On success, socket_async_create shall return the created and configured SOCKET_ASYNC_HANDLE. ]*/
                     // This result would be a surprise because a non-blocking socket
                     // returns EINPROGRESS. But it could happen if this thread got
                     // blocked for a while by the system while the handshake proceeded,
                     // or for a UDP socket.
-                    result = sock;
-                }
+                    //result = sock;
+                //}
             }
         }
     }
