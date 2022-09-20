@@ -150,6 +150,7 @@ SOCKET_ASYNC_HANDLE socket_async_create(uint32_t serverIPv4, uint16_t port,
                     // or for a UDP socket.
                     //result = sock;
                 //}
+                result = sock;
             }
         }
     }
